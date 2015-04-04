@@ -160,8 +160,15 @@ class SearchPage extends Component {
   }
 
   onSearchPressed() {
+    // 1.
+    // Access to Rakuten API.
     var query = "https://app.rakuten.co.jp/services/api/Recipe/CategoryRanking/20121121?format=json&applicationId="
       + Secrets.rakutenApplicationId;
+
+    // 2.
+    // If uncomment this, access to testdata, by `python -m SimpleHTTPServer`.
+    // query = "http://localhost:8000/testdata/recipes.json";
+
     this._executeQuery(query);
   }
 }
