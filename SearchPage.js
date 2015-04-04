@@ -73,6 +73,9 @@ class SearchPage extends Component {
         <Text style={styles.description}>
           Search by food-name, material-name.
         </Text>
+
+        // styles.flowRightとstyles.buttonは、
+        // {flex:4}と{flex:1}なので、幅が4:1の比率になる。
         <View style={styles.flowRight}>
           <TextInput
             style={styles.searchInput}
