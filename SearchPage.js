@@ -56,6 +56,7 @@ var styles = StyleSheet.create({
     marginRight: 5,
     flex: 4,
     fontSize: 18,
+    fontFamily: 'Hiragino Kaku Gothic ProN',
     borderWidth: 1,
     borderColor: '#48BBEC',
     borderRadius: 8,
@@ -68,12 +69,20 @@ var styles = StyleSheet.create({
 });
 
 class SearchPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchString: 'ひき肉'
+    };
+  }
+
   render() {
     /*
       Tips:
         styles.flowRightとstyles.buttonは、
         flex:4とflex:1なので、幅が4:1の比率になる。
     */
+    console.log('SearchPage.render');
     return (
       <View style={styles.container}>
         <Text style={styles.description}>
@@ -85,6 +94,8 @@ class SearchPage extends Component {
         <View style={styles.flowRight}>
           <TextInput
             style={styles.searchInput}
+            value={this.state.searchString}
+            onChange={this.onSearchTextChanged.bind(this)}
             placeholder='Search via food-name'/>
           <TouchableHighlight style={styles.button}
               underlayColor='#99d9f4'>
@@ -94,6 +105,12 @@ class SearchPage extends Component {
         <Image source={require('image!kyusyoku_koujou_ryouri')} style={styles.image}/>
       </View>
     );
+  }
+
+  onSearchTextChanged(event) {
+    console.log('onSearchTextChanged');
+    this.setState({ searchString: event.nativeEvent.text });
+    console.log(this.state.searchString);
   }
 }
 
