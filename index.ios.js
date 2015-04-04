@@ -14,14 +14,16 @@ var {
   NavigatorIOS,
 } = React;
 
+var SearchPage = require('./SearchPage');
+
 var ReactRecipeApiViewer = React.createClass({
   render: function() {
     return (
       <NavigatorIOS
         style={styles.natigator}
         initialRoute={{
-          component: View,
-          title: 'Title',
+          component: SearchPage,
+          title: 'Recipe Finder',
         }}
         tintColor="#4A90C7"
       />
