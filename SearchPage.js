@@ -16,6 +16,8 @@ var {
   Component
 } = React;
 
+var Seacrets = require('./Seacrets');
+
 var styles = StyleSheet.create({
   description: {
     marginBottom: 20,
@@ -74,6 +76,7 @@ class SearchPage extends Component {
     this.state = {
       searchString: 'ひき肉',
       isLoading: false,
+      message: '',
     };
   }
 
@@ -113,6 +116,7 @@ class SearchPage extends Component {
         </View>
         <Image source={require('image!kyusyoku_koujou_ryouri')} style={styles.image}/>
         {spinner}
+        <Text style={styles.description}>{this.state.message}</Text>
       </View>
     );
   }
@@ -126,10 +130,32 @@ class SearchPage extends Component {
   _executeQuery(query) {
     console.log(query);
     this.setState({ isLoading: true });
+    fetch(query)
+      .then((response) => response.json())
+      .then((json) => {
+        this._handleResponse(json)
+      })
+      .catch((error) => {
+        this.setState({
+          isLoading: false,
+          message: 'Something bad happened ' + error
+        })
+      });
+  }
+
+  _handleResponse(response) {
+    this.setState({ isLoading: false , message: '' });
+    console.log(response);
+    if (response.result !== undefined) {
+      console.log('Properties found: ' + response.result.length);
+    } else {
+      this.setState({ message: 'Searching query is failed; please try again.'});
+    }
   }
 
   onSearchPressed() {
-    var query = "https://app.rakuten.co.jp/services/api/Recipe/CategoryRanking/20121121?format=json&applicationId=3915a115a197e105782baf3df4a1ad19";
+    var query = "https://app.rakuten.co.jp/services/api/Recipe/CategoryRanking/20121121?format=json&applicationId="
+      + Seacrets.rakutenApplicationId;
     this._executeQuery(query);
   }
 }
