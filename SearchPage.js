@@ -16,7 +16,8 @@ var {
   Component
 } = React;
 
-var Seacrets = require('./Seacrets');
+var Secrets = require('./Secrets');
+var SearchResults = require('./SearchResults');
 
 var styles = StyleSheet.create({
   description: {
@@ -148,6 +149,11 @@ class SearchPage extends Component {
     console.log(response);
     if (response.result !== undefined) {
       console.log('Properties found: ' + response.result.length);
+      this.props.navigator.push({
+        title: 'Results',
+        component: SearchResults,
+        passProps: {listings: response.result}
+      });
     } else {
       this.setState({ message: 'Searching query is failed; please try again.'});
     }
@@ -155,7 +161,7 @@ class SearchPage extends Component {
 
   onSearchPressed() {
     var query = "https://app.rakuten.co.jp/services/api/Recipe/CategoryRanking/20121121?format=json&applicationId="
-      + Seacrets.rakutenApplicationId;
+      + Secrets.rakutenApplicationId;
     this._executeQuery(query);
   }
 }

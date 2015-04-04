@@ -1,7 +1,7 @@
 'use strict';
 
-var Seacrets = {
+var Secrets = {
   rakutenApplicationId: "FILL_YOUR_ID",
 };
 
-module.exports = Seacrets;
+module.exports = Secrets;

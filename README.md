@@ -10,14 +10,31 @@ ReactRecipeApiViewer
 
 ### Get start
 
+- Install this.
+
 ```shell
 brew update
 brew install watchman
 brew install flow
 npm install -g react-native-cli
 npm install
+```
+
+- Set Application ID for Rakuten API, on Secrets.js
+
+```javascript
+var Secrets = {
+  rakutenApplicationId: "FILL_YOUR_ID",
+};
+```
+
+- Open Xcode Project
+
+```
 open ReactRecipeApiViewer.xcodeproj
 ```
+
+- Run App!
 
 ### Licence
 - MIT
