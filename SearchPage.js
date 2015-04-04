@@ -72,11 +72,18 @@ class SearchPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchString: 'ひき肉'
+      searchString: 'ひき肉',
+      isLoading: false,
     };
   }
 
   render() {
+    var spinner = this.state.isLoading ?
+      ( <ActivityIndicatorIOS
+          hidden='true'
+          size='large'/> ) :
+      ( <View/>);
+
     /*
       Tips:
         styles.flowRightとstyles.buttonは、
@@ -97,12 +104,15 @@ class SearchPage extends Component {
             value={this.state.searchString}
             onChange={this.onSearchTextChanged.bind(this)}
             placeholder='Search via food-name'/>
-          <TouchableHighlight style={styles.button}
-              underlayColor='#99d9f4'>
+          <TouchableHighlight
+            style={styles.button}
+            underlayColor='#99d9f4'
+            onPress={this.onSearchPressed.bind(this)}>
             <Text style={styles.buttonText}>Go</Text>
           </TouchableHighlight>
         </View>
         <Image source={require('image!kyusyoku_koujou_ryouri')} style={styles.image}/>
+        {spinner}
       </View>
     );
   }
@@ -111,6 +121,16 @@ class SearchPage extends Component {
     console.log('onSearchTextChanged');
     this.setState({ searchString: event.nativeEvent.text });
     console.log(this.state.searchString);
+  }
+
+  _executeQuery(query) {
+    console.log(query);
+    this.setState({ isLoading: true });
+  }
+
+  onSearchPressed() {
+    var query = "https://app.rakuten.co.jp/services/api/Recipe/CategoryRanking/20121121?format=json&applicationId=3915a115a197e105782baf3df4a1ad19";
+    this._executeQuery(query);
   }
 }
 
