@@ -61,6 +61,10 @@ var styles = StyleSheet.create({
     borderRadius: 8,
     color: '#48BBEC'
   },
+  image: {
+    width: 200,
+    height: 197
+  },
 });
 
 class SearchPage extends Component {
@@ -87,6 +91,7 @@ class SearchPage extends Component {
             <Text style={styles.buttonText}>Go</Text>
           </TouchableHighlight>
         </View>
+        <Image source={require('image!kyusyoku_koujou_ryouri')} style={styles.image}/>
       </View>
     );
   }
