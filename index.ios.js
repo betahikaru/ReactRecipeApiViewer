@@ -10,16 +10,21 @@ var {
   StyleSheet,
   Text,
   View,
+
+  NavigatorIOS,
 } = React;
 
 var ReactRecipeApiViewer = React.createClass({
   render: function() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.instructions}>
-          This is &lt;Text&gt;
-        </Text>
-      </View>
+      <NavigatorIOS
+        style={styles.natigator}
+        initialRoute={{
+          component: View,
+          title: 'Title',
+        }}
+        tintColor="#4A90C7"
+      />
     );
   }
 });
@@ -30,6 +35,9 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  natigator: {
+    flex: 1,
   },
 });
 
