@@ -65,6 +65,11 @@ var styles = StyleSheet.create({
 
 class SearchPage extends Component {
   render() {
+    /*
+      Tips:
+        styles.flowRightとstyles.buttonは、
+        flex:4とflex:1なので、幅が4:1の比率になる。
+    */
     return (
       <View style={styles.container}>
         <Text style={styles.description}>
@@ -73,9 +78,6 @@ class SearchPage extends Component {
         <Text style={styles.description}>
           Search by food-name, material-name.
         </Text>
-
-        // styles.flowRightとstyles.buttonは、
-        // {flex:4}と{flex:1}なので、幅が4:1の比率になる。
         <View style={styles.flowRight}>
           <TextInput
             style={styles.searchInput}
